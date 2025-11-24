@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 export default function DonatePage() {
   const [donationAmount, setDonationAmount] = useState('')
@@ -32,13 +33,28 @@ export default function DonatePage() {
       <section className="bg-gradient-to-br from-brand-purple to-brand-purple-dark text-white section-padding">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Make a <span className="text-brand-orange">Donation</span>
-            </h1>
-            <p className="text-xl text-gray-200">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-5xl md:text-6xl font-bold mb-6"
+            >
+              Make a <motion.span
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="text-brand-orange"
+              >Donation</motion.span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-xl text-gray-200"
+            >
               Your generous contribution helps us continue our mission of empowering lives and 
               creating lasting positive change in our community. Every donation makes a difference.
-            </p>
+            </motion.p>
           </div>
         </div>
       </section>
@@ -47,9 +63,15 @@ export default function DonatePage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8 text-center">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl font-bold mb-8 text-center"
+            >
               How Your <span className="text-brand-orange">Donation</span> Helps
-            </h2>
+            </motion.h2>
             <div className="grid md:grid-cols-2 gap-6 mb-12">
               {[
                 {
@@ -89,11 +111,19 @@ export default function DonatePage() {
                   ),
                 },
               ].map((item, index) => (
-                <div key={index} className="bg-gray-50 p-6 rounded-xl border-l-4 border-brand-orange">
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="bg-gray-50 p-6 rounded-xl border-l-4 border-brand-orange"
+                >
                   <div className="flex justify-center mb-3 text-brand-purple">{item.icon}</div>
                   <h3 className="text-xl font-bold text-brand-purple mb-2">{item.title}</h3>
                   <p className="text-gray-600">{item.description}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -104,7 +134,13 @@ export default function DonatePage() {
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
-            <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+              className="bg-white p-8 md:p-12 rounded-2xl shadow-xl"
+            >
               <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
                 Donation <span className="text-brand-orange">Form</span>
               </h2>
@@ -196,11 +232,16 @@ export default function DonatePage() {
                   />
                 </div>
 
-                <button type="submit" className="w-full btn-primary text-lg py-4">
+                <motion.button
+                  type="submit"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full btn-primary text-lg py-4"
+                >
                   Proceed to Donate
-                </button>
+                </motion.button>
               </form>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -209,10 +250,22 @@ export default function DonatePage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+              className="text-3xl font-bold mb-6 text-center text-gray-800"
+            >
               Payment <span className="text-brand-orange">Methods</span>
-            </h2>
-            <div className="bg-gray-50 p-8 rounded-2xl">
+            </motion.h2>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-gray-50 p-8 rounded-2xl"
+            >
               <p className="text-lg text-gray-700 mb-4">
                 After submitting your donation form, we will contact you with payment details. 
                 We accept donations through:
@@ -237,7 +290,7 @@ export default function DonatePage() {
                   Financial reports are available upon request and presented at our Annual General Meeting.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -246,16 +299,34 @@ export default function DonatePage() {
       <section className="section-padding bg-gradient-to-r from-brand-orange to-red-600 text-white">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-4">Questions About Donating?</h2>
-            <p className="text-xl mb-6 text-gray-100">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+              className="text-3xl font-bold mb-4"
+            >Questions About Donating?</motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-xl mb-6 text-gray-100"
+            >
               We're here to help. Contact us for more information about making a donation.
-            </p>
-            <a
+            </motion.p>
+            <motion.a
               href="mailto:cbobetterlife@gmail.com"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className="text-white text-xl font-semibold hover:underline bg-white bg-opacity-20 px-6 py-3 rounded-lg inline-block"
             >
               cbobetterlife@gmail.com
-            </a>
+            </motion.a>
           </div>
         </div>
       </section>

@@ -1,8 +1,14 @@
+'use client'
+
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+
 export default function ProgramsPage() {
   const programs = [
     {
       title: 'Economic Empowerment',
       description: 'Support small businesses, capacity building, and cooperative initiatives.',
+      image: '/images/programs/economic-empowerment.jpg',
       details: [
         'Small business development and support',
         'Capacity building workshops',
@@ -20,6 +26,7 @@ export default function ProgramsPage() {
     {
       title: 'Education and Training',
       description: 'Provide scholarships, mentorship, and skills training for youth and women.',
+      image: '/images/programs/education-training.jpg',
       details: [
         'Educational scholarships for deserving students',
         'Youth mentorship programs',
@@ -37,6 +44,7 @@ export default function ProgramsPage() {
     {
       title: 'Health and Sanitation',
       description: 'Organize community health drives, awareness campaigns, and hygiene projects.',
+      image: '/images/programs/health-saniation.jpeg',
       details: [
         'Community health drives and medical camps',
         'Health awareness campaigns',
@@ -54,6 +62,7 @@ export default function ProgramsPage() {
     {
       title: 'Environmental Conservation',
       description: 'Initiate tree planting, waste management, and clean-up campaigns.',
+      image: '/images/programs/environmental-conservation.jpeg',
       details: [
         'Tree planting initiatives',
         'Waste management programs',
@@ -71,6 +80,7 @@ export default function ProgramsPage() {
     {
       title: 'Social Cohesion',
       description: 'Facilitate youth mentorship, family strengthening, and peace-building programs.',
+      image: '/images/programs/social-cohesion.jpeg',
       details: [
         'Youth mentorship programs',
         'Family strengthening initiatives',
@@ -93,13 +103,28 @@ export default function ProgramsPage() {
       <section className="bg-gradient-to-br from-brand-purple to-brand-purple-dark text-white section-padding">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Our <span className="text-brand-orange">Programs</span>
-            </h1>
-            <p className="text-xl text-gray-200">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-5xl md:text-6xl font-bold mb-6"
+            >
+              Our <motion.span
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="text-brand-orange"
+              >Programs</motion.span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-xl text-gray-200"
+            >
               We undertake comprehensive activities across multiple areas to achieve our objectives 
               and create lasting positive change in our community.
-            </p>
+            </motion.p>
           </div>
         </div>
       </section>
@@ -109,14 +134,31 @@ export default function ProgramsPage() {
         <div className="container-custom">
           <div className="space-y-12">
             {programs.map((program, index) => (
-              <div
+              <motion.div
                 key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ scale: 1.01 }}
                 className={`bg-white rounded-2xl shadow-xl overflow-hidden ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 } flex flex-col md:flex`}
               >
-                <div className={`md:w-1/3 bg-gradient-to-br ${program.color} text-white p-12 flex items-center justify-center`}>
-                  <div className="text-center">
+                {/* Program Photo Section */}
+                <div className={`md:w-1/3 bg-gradient-to-br ${program.color} text-white p-12 flex items-center justify-center relative`}>
+                  {program.image ? (
+                    <div className="absolute inset-0">
+                      <Image
+                        src={program.image}
+                        alt={program.title}
+                        fill
+                        className="object-cover opacity-90"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-br from-black/40 to-transparent"></div>
+                    </div>
+                  ) : null}
+                  <div className="text-center relative z-10">
                     <div className="flex justify-center mb-4">{program.icon}</div>
                     <h2 className="text-3xl font-bold">{program.title}</h2>
                   </div>
@@ -133,7 +175,7 @@ export default function ProgramsPage() {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -143,18 +185,46 @@ export default function ProgramsPage() {
       <section className="section-padding bg-gradient-to-r from-brand-orange to-red-600 text-white">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-6">Get Involved in Our Programs</h2>
-            <p className="text-xl mb-8 text-gray-100">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl font-bold mb-6"
+            >Get Involved in Our Programs</motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-xl mb-8 text-gray-100"
+            >
               Whether you want to participate, volunteer, or support our programs, we'd love to have you join us.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/volunteer" className="bg-white text-brand-orange btn-primary hover:bg-gray-100">
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
+              <motion.a
+                href="/volunteer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white text-brand-orange btn-primary hover:bg-gray-100"
+              >
                 Volunteer
-              </a>
-              <a href="/donate" className="bg-brand-purple text-white btn-secondary hover:bg-opacity-90">
+              </motion.a>
+              <motion.a
+                href="/donate"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-brand-purple text-white btn-secondary hover:bg-opacity-90"
+              >
                 Donate
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
           </div>
         </div>
       </section>

@@ -1,3 +1,7 @@
+'use client'
+
+import { motion } from 'framer-motion'
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
@@ -5,13 +9,28 @@ export default function AboutPage() {
       <section className="bg-gradient-to-br from-brand-purple to-brand-purple-dark text-white section-padding">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              About <span className="text-brand-orange">Better Life CBO</span>
-            </h1>
-            <p className="text-xl text-gray-200">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-5xl md:text-6xl font-bold mb-6"
+            >
+              About <motion.span
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="text-brand-orange"
+              >Better Life CBO</motion.span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-xl text-gray-200"
+            >
               A non-political, non-sectarian, and voluntary community organization committed to 
               enhancing the social and economic wellbeing of its members and the wider community.
-            </p>
+            </motion.p>
           </div>
         </div>
       </section>
@@ -20,7 +39,13 @@ export default function AboutPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-gray-50 p-8 rounded-2xl border-l-4 border-brand-orange">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+              className="bg-gray-50 p-8 rounded-2xl border-l-4 border-brand-orange"
+            >
               <h2 className="text-3xl font-bold mb-4 text-gray-800">Our Location</h2>
               <p className="text-lg text-gray-600 mb-2">
                 <strong>Address:</strong> Kahawa West, Roysambu Subcounty, Nairobi City County, Kenya
@@ -31,7 +56,7 @@ export default function AboutPage() {
                   cbobetterlife@gmail.com
                 </a>
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -40,9 +65,15 @@ export default function AboutPage() {
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8 text-center">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl font-bold mb-8 text-center"
+            >
               Our <span className="text-brand-orange">Objectives</span>
-            </h2>
+            </motion.h2>
             <div className="grid md:grid-cols-2 gap-6">
               {[
                 'Promote community empowerment through education, health, and economic programs.',
@@ -53,8 +84,13 @@ export default function AboutPage() {
                 'Foster unity, peace, and social responsibility within the community.',
                 'Mobilize resources to improve livelihoods through income-generating activities.',
               ].map((objective, index) => (
-                <div
+                <motion.div
                   key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02, y: -5 }}
                   className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border-t-4 border-brand-green"
                 >
                   <div className="flex items-start">
@@ -63,7 +99,7 @@ export default function AboutPage() {
                     </div>
                     <p className="text-gray-700">{objective}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -74,28 +110,46 @@ export default function AboutPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8 text-center">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl font-bold mb-8 text-center"
+            >
               Our <span className="text-brand-orange">Governance</span>
-            </h2>
+            </motion.h2>
             <div className="space-y-6">
-              <div className="bg-gradient-to-r from-brand-purple to-brand-purple-dark text-white p-8 rounded-2xl">
-                <h3 className="text-2xl font-bold mb-4">General Assembly</h3>
-                <p className="text-gray-200">
-                  Composed of all registered members, serving as the supreme decision-making body of the organization.
-                </p>
-              </div>
-              <div className="bg-gradient-to-r from-brand-orange to-red-600 text-white p-8 rounded-2xl">
-                <h3 className="text-2xl font-bold mb-4">Executive Committee</h3>
-                <p className="text-gray-100">
-                  Responsible for implementation of decisions and management of daily operations.
-                </p>
-              </div>
-              <div className="bg-gradient-to-r from-brand-green to-green-600 text-white p-8 rounded-2xl">
-                <h3 className="text-2xl font-bold mb-4">Subcommittees</h3>
-                <p className="text-gray-100">
-                  Established as necessary to address specific areas such as finance, programs, or welfare.
-                </p>
-              </div>
+              {[
+                {
+                  title: 'General Assembly',
+                  description: 'Composed of all registered members, serving as the supreme decision-making body of the organization.',
+                  gradient: 'from-brand-purple to-brand-purple-dark',
+                },
+                {
+                  title: 'Executive Committee',
+                  description: 'Responsible for implementation of decisions and management of daily operations.',
+                  gradient: 'from-brand-orange to-red-600',
+                },
+                {
+                  title: 'Subcommittees',
+                  description: 'Established as necessary to address specific areas such as finance, programs, or welfare.',
+                  gradient: 'from-brand-green to-green-600',
+                },
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02 }}
+                  className={`bg-gradient-to-r ${item.gradient} text-white p-8 rounded-2xl`}
+                >
+                  <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
+                  <p className="text-gray-100">{item.description}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
@@ -105,10 +159,22 @@ export default function AboutPage() {
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8 text-center">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl font-bold mb-8 text-center"
+            >
               Become a <span className="text-brand-orange">Member</span>
-            </h2>
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
+            </motion.h2>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-white p-8 rounded-2xl shadow-lg"
+            >
               <p className="text-lg text-gray-700 mb-6">
                 Membership is open to all persons aged 18 years and above residing within the area of operation 
                 who subscribe to the mission and vision of Better Life CBO.
@@ -141,7 +207,7 @@ export default function AboutPage() {
                   to learn more about membership and how you can get involved.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

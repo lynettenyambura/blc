@@ -2,8 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [],
-    remotePatterns: [],
+    unoptimized: true,
   },
 }
 

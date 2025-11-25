@@ -2,12 +2,18 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+    <motion.nav
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      className="bg-white shadow-md sticky top-0 z-50"
+    >
       <div className="container-custom">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -29,23 +35,38 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-gray-700 hover:text-brand-orange transition-colors font-medium">
-              Home
-            </Link>
-            <Link href="/about" className="text-gray-700 hover:text-brand-orange transition-colors font-medium">
-              About
-            </Link>
-            <Link href="/programs" className="text-gray-700 hover:text-brand-orange transition-colors font-medium">
-              Programs
-            </Link>
-            <Link href="/volunteer" className="text-gray-700 hover:text-brand-orange transition-colors font-medium">
-              Volunteer
-            </Link>
-            <Link href="/donate" className="btn-primary">
-              Donate
-            </Link>
-          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="hidden md:flex items-center space-x-8"
+          >
+            <motion.div whileHover={{ y: -2 }}>
+              <Link href="/" className="text-gray-700 hover:text-brand-orange transition-colors font-medium">
+                Home
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ y: -2 }}>
+              <Link href="/about" className="text-gray-700 hover:text-brand-orange transition-colors font-medium">
+                About
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ y: -2 }}>
+              <Link href="/programs" className="text-gray-700 hover:text-brand-orange transition-colors font-medium">
+                Programs
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ y: -2 }}>
+              <Link href="/volunteer" className="text-gray-700 hover:text-brand-orange transition-colors font-medium">
+                Volunteer
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link href="/donate" className="btn-primary">
+                Donate
+              </Link>
+            </motion.div>
+          </motion.div>
 
           {/* Mobile menu button */}
           <button
@@ -63,27 +84,65 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden pb-4 space-y-3">
-            <Link href="/" className="block text-gray-700 hover:text-brand-orange transition-colors font-medium">
-              Home
-            </Link>
-            <Link href="/about" className="block text-gray-700 hover:text-brand-orange transition-colors font-medium">
-              About
-            </Link>
-            <Link href="/programs" className="block text-gray-700 hover:text-brand-orange transition-colors font-medium">
-              Programs
-            </Link>
-            <Link href="/volunteer" className="block text-gray-700 hover:text-brand-orange transition-colors font-medium">
-              Volunteer
-            </Link>
-            <Link href="/donate" className="block btn-primary text-center">
-              Donate
-            </Link>
-          </div>
-        )}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden pb-4 space-y-3 overflow-hidden"
+            >
+              <motion.div
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.1 }}
+              >
+                <Link href="/" className="block text-gray-700 hover:text-brand-orange transition-colors font-medium">
+                  Home
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.15 }}
+              >
+                <Link href="/about" className="block text-gray-700 hover:text-brand-orange transition-colors font-medium">
+                  About
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+              >
+                <Link href="/programs" className="block text-gray-700 hover:text-brand-orange transition-colors font-medium">
+                  Programs
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.25 }}
+              >
+                <Link href="/volunteer" className="block text-gray-700 hover:text-brand-orange transition-colors font-medium">
+                  Volunteer
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                <Link href="/donate" className="block btn-primary text-center">
+                  Donate
+                </Link>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </nav>
+    </motion.nav>
   )
 }
 

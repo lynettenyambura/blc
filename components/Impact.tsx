@@ -1,3 +1,47 @@
+'use client'
+
+import { motion, useInView, useMotionValue, useSpring } from 'framer-motion'
+import { useEffect, useRef } from 'react'
+
+function AnimatedNumber({ value }: { value: string }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const motionValue = useMotionValue(0)
+  const springValue = useSpring(motionValue, {
+    damping: 60,
+    stiffness: 100,
+  })
+  const isInView = useInView(ref, { once: true, margin: '-50px' })
+
+  useEffect(() => {
+    if (isInView) {
+      // Extract number from string (e.g., "500+" -> 500, "100%" -> 100)
+      const numValue = parseInt(value.replace(/\D/g, ''))
+      motionValue.set(numValue)
+    }
+  }, [motionValue, isInView, value])
+
+  useEffect(() => {
+    const unsubscribe = springValue.on('change', (latest) => {
+      if (ref.current) {
+        const numValue = parseInt(value.replace(/\D/g, ''))
+        const displayValue = Math.floor(latest)
+        // Preserve the original format (e.g., "+" or "%")
+        if (value.includes('+')) {
+          ref.current.textContent = `${displayValue}+`
+        } else if (value.includes('%')) {
+          ref.current.textContent = `${displayValue}%`
+        } else {
+          ref.current.textContent = displayValue.toString()
+        }
+      }
+    })
+    
+    return () => unsubscribe()
+  }, [springValue, value])
+
+  return <div ref={ref} className="text-5xl md:text-6xl font-bold text-brand-orange mb-2">0</div>
+}
+
 export default function Impact() {
   const stats = [
     {
@@ -38,10 +82,39 @@ export default function Impact() {
     },
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.5 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        type: 'spring',
+        stiffness: 100,
+      },
+    },
+  }
+
   return (
     <section className="section-padding bg-gradient-to-br from-brand-purple to-brand-purple-dark text-white">
       <div className="container-custom">
-        <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Our <span className="text-brand-orange">Impact</span>
           </h2>
@@ -49,26 +122,48 @@ export default function Impact() {
             Together, we're making a real difference in our community. Every number represents a life touched, 
             a family empowered, and a step toward a better tomorrow.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-8"
+        >
           {stats.map((stat, index) => (
-            <div
+            <motion.div
               key={index}
+              variants={itemVariants}
+              whileHover={{ scale: 1.05, y: -5 }}
               className="text-center bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-2xl border border-white border-opacity-20 hover:bg-opacity-20 transition-all duration-300"
             >
-              <div className="flex justify-center mb-4 text-brand-orange">{stat.icon}</div>
-              <div className="text-5xl md:text-6xl font-bold text-brand-orange mb-2">{stat.number}</div>
+              <motion.div
+                initial={{ rotate: -180, opacity: 0 }}
+                whileInView={{ rotate: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="flex justify-center mb-4 text-brand-orange"
+              >
+                {stat.icon}
+              </motion.div>
+              <AnimatedNumber value={stat.number} />
               <div className="text-lg text-gray-200">{stat.label}</div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="mt-12 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-12 text-center"
+        >
           <p className="text-xl text-gray-200 mb-6">
             Join us in creating lasting positive change in Kahawa West and beyond.
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

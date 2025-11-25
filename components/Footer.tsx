@@ -1,9 +1,15 @@
 import Link from 'next/link'
+import Newsletter from './Newsletter'
 
 export default function Footer() {
   return (
     <footer className="bg-brand-purple text-white">
       <div className="container-custom section-padding">
+        {/* Newsletter Section */}
+        <div className="mb-12">
+          <Newsletter />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About */}
           <div>

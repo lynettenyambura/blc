@@ -26,7 +26,7 @@ export default function ProgramsPage() {
     {
       title: 'Education and Training',
       description: 'Provide scholarships, mentorship, and skills training for youth and women.',
-      image: '/images/programs/education-training.jpg',
+      image: '/images/programs/education-training-v2.png',
       details: [
         'Educational scholarships for deserving students',
         'Youth mentorship programs',
@@ -122,7 +122,7 @@ export default function ProgramsPage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl text-gray-200"
             >
-              We undertake comprehensive activities across multiple areas to achieve our objectives 
+              We undertake comprehensive activities across multiple areas to achieve our objectives
               and create lasting positive change in our community.
             </motion.p>
           </div>
@@ -141,9 +141,8 @@ export default function ProgramsPage() {
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ scale: 1.01 }}
-                className={`bg-white rounded-2xl shadow-xl overflow-hidden ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } flex flex-col md:flex`}
+                className={`bg-white rounded-2xl shadow-xl overflow-hidden ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                  } flex flex-col md:flex`}
               >
                 {/* Program Photo Section */}
                 <div className={`md:w-1/3 bg-gradient-to-br ${program.color} text-white p-12 flex items-center justify-center relative`}>

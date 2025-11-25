@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useInView, useMotionValue, useSpring } from 'framer-motion'
+import { motion, useInView, useMotionValue, useSpring, Variants } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 
 function AnimatedNumber({ value }: { value: string }) {
@@ -82,7 +82,7 @@ export default function Impact() {
     },
   ]
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -92,7 +92,7 @@ export default function Impact() {
     },
   }
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, scale: 0.5 },
     visible: {
       opacity: 1,

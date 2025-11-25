@@ -1,16 +1,16 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = new Resend(process.env.RESEND_API_KEY || 're_123')
 
 export async function sendConfirmationEmail(to: string) {
   console.log('📧 Attempting to send confirmation email to:', to)
-  
+
   if (!process.env.RESEND_API_KEY) {
     console.warn('⚠️ RESEND_API_KEY not set, skipping confirmation email')
     console.warn('Please add RESEND_API_KEY to your .env.local file')
     return
   }
-  
+
   console.log('✅ RESEND_API_KEY is set')
   console.log('📤 From email:', process.env.RESEND_FROM_EMAIL || 'Better Life CBO <onboarding@resend.dev>')
 
@@ -64,12 +64,12 @@ export async function sendConfirmationEmail(to: string) {
         </html>
       `,
     })
-    
+
     if (result.error) {
       console.error('Resend API Error:', result.error)
       throw new Error(`Failed to send email: ${JSON.stringify(result.error)}`)
     }
-    
+
     console.log('✅ Confirmation email sent successfully to:', to)
     console.log('Email ID:', result.data?.id)
   } catch (error: any) {
@@ -116,11 +116,11 @@ export async function sendNotificationEmail(subscriberEmail: string) {
                 </p>
                 <p style="margin: 15px 0 0 0; font-size: 14px; color: #666;">
                   <strong>Subscribed At:</strong><br>
-                  ${new Date().toLocaleString('en-US', { 
-                    dateStyle: 'long', 
-                    timeStyle: 'short',
-                    timeZone: 'Africa/Nairobi'
-                  })}
+                  ${new Date().toLocaleString('en-US', {
+        dateStyle: 'long',
+        timeStyle: 'short',
+        timeZone: 'Africa/Nairobi'
+      })}
                 </p>
               </div>
               <p style="font-size: 14px; color: #666; margin-top: 20px;">

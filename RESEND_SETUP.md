@@ -147,3 +147,4 @@ If you need more, upgrade to paid plans starting at $20/month.
 Your newsletter is now fully functional with email confirmations! 🎉
 
 
+

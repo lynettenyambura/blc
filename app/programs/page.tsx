@@ -144,23 +144,37 @@ export default function ProgramsPage() {
                 className={`bg-white rounded-2xl shadow-xl overflow-hidden ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                   } flex flex-col md:flex`}
               >
-                {/* Program Photo Section */}
-                <div className={`md:w-1/3 bg-gradient-to-br ${program.color} text-white p-12 flex items-center justify-center relative`}>
+                {/* Program Photo Section with Gradient Overlay */}
+                <div className="md:w-1/3 relative overflow-hidden group min-h-[400px]">
                   {program.image ? (
-                    <div className="absolute inset-0">
+                    <>
                       <Image
                         src={program.image}
                         alt={program.title}
                         fill
-                        className="object-cover opacity-90"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-br from-black/40 to-transparent"></div>
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-opacity duration-300 group-hover:from-black/80" />
+
+                      {/* Icon and Title on Image - Bottom Left */}
+                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <div className={`bg-gradient-to-br ${program.color} text-white w-14 h-14 rounded-full flex items-center justify-center mb-4 shadow-lg backdrop-blur-sm bg-opacity-90`}>
+                          <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            {program.icon.props.children}
+                          </svg>
+                        </div>
+                        <h2 className="text-3xl font-bold drop-shadow-lg">{program.title}</h2>
+                      </div>
+                    </>
+                  ) : (
+                    <div className={`bg-gradient-to-br ${program.color} text-white p-12 flex items-center justify-center h-full`}>
+                      <div className="text-center">
+                        <div className="flex justify-center mb-4">{program.icon}</div>
+                        <h2 className="text-3xl font-bold">{program.title}</h2>
+                      </div>
                     </div>
-                  ) : null}
-                  <div className="text-center relative z-10">
-                    <div className="flex justify-center mb-4">{program.icon}</div>
-                    <h2 className="text-3xl font-bold">{program.title}</h2>
-                  </div>
+                  )}
                 </div>
                 <div className="md:w-2/3 p-12">
                   <p className="text-xl text-gray-700 mb-6">{program.description}</p>

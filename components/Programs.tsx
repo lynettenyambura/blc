@@ -114,25 +114,33 @@ export default function ProgramsSection() {
               key={index}
               variants={itemVariants}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-transparent hover:border-brand-orange overflow-hidden"
+              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
             >
-              {/* Program Photo */}
+              {/* Program Photo with Gradient Overlay */}
               {program.image && (
-                <div className="relative h-48 w-full">
+                <div className="relative h-64 w-full overflow-hidden">
                   <Image
                     src={program.image}
                     alt={program.title}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-opacity duration-300 group-hover:from-black/80" />
+
+                  {/* Icon and Title on Image */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <div className={`${program.color} text-white w-14 h-14 rounded-full flex items-center justify-center mb-4 shadow-lg backdrop-blur-sm bg-opacity-90`}>
+                      {program.icon}
+                    </div>
+                    <h3 className="text-2xl font-bold drop-shadow-lg">{program.title}</h3>
+                  </div>
                 </div>
               )}
-              <div className="p-8">
-                <div className={`${program.color} text-white w-16 h-16 rounded-full flex items-center justify-center mb-6`}>
-                  {program.icon}
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-gray-800">{program.title}</h3>
-                <p className="text-gray-600">{program.description}</p>
+
+              {/* Description Below Image */}
+              <div className="p-6">
+                <p className="text-gray-600 leading-relaxed">{program.description}</p>
               </div>
             </motion.div>
           ))}

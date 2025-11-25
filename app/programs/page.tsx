@@ -8,7 +8,7 @@ export default function ProgramsPage() {
     {
       title: 'Economic Empowerment',
       description: 'Support small businesses, capacity building, and cooperative initiatives.',
-      image: '/images/programs/economic-empowerment.jpg',
+      image: '/images/programs/economic-empowerment-v2.png',
       details: [
         'Small business development and support',
         'Capacity building workshops',
@@ -44,7 +44,7 @@ export default function ProgramsPage() {
     {
       title: 'Health and Sanitation',
       description: 'Organize community health drives, awareness campaigns, and hygiene projects.',
-      image: '/images/programs/health-saniation.jpeg',
+      image: '/images/programs/health-sanitation-v2.png',
       details: [
         'Community health drives and medical camps',
         'Health awareness campaigns',
@@ -62,7 +62,7 @@ export default function ProgramsPage() {
     {
       title: 'Environmental Conservation',
       description: 'Initiate tree planting, waste management, and clean-up campaigns.',
-      image: '/images/programs/environmental-conservation.jpeg',
+      image: '/images/programs/environmental-conservation-v2.png',
       details: [
         'Tree planting initiatives',
         'Waste management programs',
@@ -80,7 +80,7 @@ export default function ProgramsPage() {
     {
       title: 'Social Cohesion',
       description: 'Facilitate youth mentorship, family strengthening, and peace-building programs.',
-      image: '/images/programs/social-cohesion.jpeg',
+      image: '/images/programs/social-cohesion-v2.png',
       details: [
         'Youth mentorship programs',
         'Family strengthening initiatives',

@@ -46,11 +46,30 @@ export default function Navbar() {
                 Home
               </Link>
             </motion.div>
-            <motion.div whileHover={{ y: -2 }}>
-              <Link href="/about" className="text-gray-700 hover:text-brand-orange transition-colors font-medium">
-                About
-              </Link>
-            </motion.div>
+            {/* About Dropdown */}
+            <div className="relative group">
+              <motion.div whileHover={{ y: -2 }} className="flex items-center space-x-1 cursor-pointer py-4">
+                <Link href="/about" className="text-gray-700 group-hover:text-brand-orange transition-colors font-medium">
+                  About
+                </Link>
+                <svg className="w-4 h-4 text-gray-500 group-hover:text-brand-orange transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </motion.div>
+
+              {/* Dropdown Menu */}
+              <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 w-56">
+                <div className="bg-white shadow-xl rounded-xl border border-gray-100 overflow-hidden py-2">
+                  <Link href="/about" className="block px-6 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange transition-colors">
+                    Our Story & Objectives
+                  </Link>
+                  <Link href="/about/management" className="block px-6 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange transition-colors">
+                    Management & Board
+                  </Link>
+                </div>
+              </div>
+            </div>
+
             <motion.div whileHover={{ y: -2 }}>
               <Link href="/programs" className="text-gray-700 hover:text-brand-orange transition-colors font-medium">
                 Programs
@@ -106,10 +125,19 @@ export default function Navbar() {
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.15 }}
+                className="space-y-2"
               >
                 <Link href="/about" className="block text-gray-700 hover:text-brand-orange transition-colors font-medium">
                   About
                 </Link>
+                <div className="pl-4 space-y-2 border-l-2 border-brand-orange border-opacity-30">
+                  <Link href="/about" className="block text-sm text-gray-600 hover:text-brand-orange mb-1">
+                    Our Story
+                  </Link>
+                  <Link href="/about/management" className="block text-sm text-gray-600 hover:text-brand-orange">
+                    Management & Board
+                  </Link>
+                </div>
               </motion.div>
               <motion.div
                 initial={{ x: -20, opacity: 0 }}

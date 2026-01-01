@@ -28,7 +28,7 @@ export default function AboutPage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl text-gray-200"
             >
-              A non-political, non-sectarian, and voluntary community organization committed to 
+              A non-political, non-sectarian, and voluntary community organization committed to
               enhancing the social and economic wellbeing of its members and the wider community.
             </motion.p>
           </div>
@@ -48,7 +48,16 @@ export default function AboutPage() {
             >
               <h2 className="text-3xl font-bold mb-4 text-gray-800">Our Location</h2>
               <p className="text-lg text-gray-600 mb-2">
-                <strong>Address:</strong> Kahawa West, Roysambu Subcounty, Nairobi City County, Kenya
+                <strong>Address:</strong> P.O. Box 13768-00100 GPO Nairobi, Kenya
+              </p>
+              <p className="text-lg text-gray-600 mb-2">
+                <strong>Location:</strong> Kahawa West, Roysambu Subcounty, Nairobi
+              </p>
+              <p className="text-lg text-gray-600 mb-2">
+                <strong>Phone:</strong>{' '}
+                <a href="tel:+254708326278" className="text-brand-orange hover:underline">
+                  +254 708 326278
+                </a>
               </p>
               <p className="text-lg text-gray-600">
                 <strong>Email:</strong>{' '}
@@ -176,7 +185,7 @@ export default function AboutPage() {
               className="bg-white p-8 rounded-2xl shadow-lg"
             >
               <p className="text-lg text-gray-700 mb-6">
-                Membership is open to all persons aged 18 years and above residing within the area of operation 
+                Membership is open to all persons aged 18 years and above residing within the area of operation
                 who subscribe to the mission and vision of Better Life CBO.
               </p>
               <div className="space-y-4">

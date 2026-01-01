@@ -52,7 +52,7 @@ export default function DonatePage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl text-gray-200"
             >
-              Your generous contribution helps us continue our mission of empowering lives and 
+              Your generous contribution helps us continue our mission of empowering lives and
               creating lasting positive change in our community. Every donation makes a difference.
             </motion.p>
           </div>
@@ -155,11 +155,10 @@ export default function DonatePage() {
                         key={amount}
                         type="button"
                         onClick={() => setDonationAmount(amount)}
-                        className={`px-4 py-3 rounded-lg font-semibold transition-all ${
-                          donationAmount === amount
+                        className={`px-4 py-3 rounded-lg font-semibold transition-all ${donationAmount === amount
                             ? 'bg-brand-orange text-white'
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                        }`}
+                          }`}
                       >
                         {parseInt(amount).toLocaleString()}
                       </button>
@@ -267,7 +266,7 @@ export default function DonatePage() {
               className="bg-gray-50 p-8 rounded-2xl"
             >
               <p className="text-lg text-gray-700 mb-4">
-                After submitting your donation form, we will contact you with payment details. 
+                After submitting your donation form, we will contact you with payment details.
                 We accept donations through:
               </p>
               <ul className="space-y-3 text-gray-700">
@@ -286,7 +285,7 @@ export default function DonatePage() {
               </ul>
               <div className="mt-6 p-4 bg-brand-purple bg-opacity-10 rounded-lg border-l-4 border-brand-purple">
                 <p className="text-gray-700">
-                  <strong>Note:</strong> All donations are used transparently for community programs. 
+                  <strong>Note:</strong> All donations are used transparently for community programs.
                   Financial reports are available upon request and presented at our Annual General Meeting.
                 </p>
               </div>
@@ -315,18 +314,32 @@ export default function DonatePage() {
             >
               We're here to help. Contact us for more information about making a donation.
             </motion.p>
-            <motion.a
-              href="mailto:cbobetterlife@gmail.com"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="text-white text-xl font-semibold hover:underline bg-white bg-opacity-20 px-6 py-3 rounded-lg inline-block"
-            >
-              cbobetterlife@gmail.com
-            </motion.a>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <motion.a
+                href="tel:+254708326278"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="text-white text-xl font-semibold hover:underline bg-white bg-opacity-20 px-6 py-3 rounded-lg inline-block"
+              >
+                +254 708 326278
+              </motion.a>
+              <motion.a
+                href="mailto:cbobetterlife@gmail.com"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="text-white text-xl font-semibold hover:underline bg-white bg-opacity-20 px-6 py-3 rounded-lg inline-block"
+              >
+                cbobetterlife@gmail.com
+              </motion.a>
+            </div>
           </div>
         </div>
       </section>

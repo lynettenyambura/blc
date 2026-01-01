@@ -1,7 +1,16 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Newsletter from './Newsletter'
 
 export default function Footer() {
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear())
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear())
+  }, [])
+
   return (
     <footer className="bg-brand-purple text-white">
       <div className="container-custom section-padding">
@@ -52,8 +61,14 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
             <ul className="space-y-2 text-sm text-gray-300">
+              <li>P.O. Box 13768-00100 GPO Nairobi</li>
               <li>Kahawa West, Roysambu Subcounty</li>
               <li>Nairobi City County, Kenya</li>
+              <li>
+                <a href="tel:+254708326278" className="hover:text-brand-orange transition-colors">
+                  +254 708 326278
+                </a>
+              </li>
               <li>
                 <a href="mailto:cbobetterlife@gmail.com" className="hover:text-brand-orange transition-colors">
                   cbobetterlife@gmail.com
@@ -76,7 +91,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-300">
-          <p>&copy; {new Date().getFullYear()} Better Life CBO. All rights reserved.</p>
+          <p>&copy; {currentYear} Better Life CBO. All rights reserved.</p>
         </div>
       </div>
     </footer>

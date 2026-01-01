@@ -72,7 +72,7 @@ export default function VolunteerPage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl text-gray-200"
             >
-              Join our community of changemakers and make a real difference in the lives of others. 
+              Join our community of changemakers and make a real difference in the lives of others.
               Your time, skills, and passion can help transform our community.
             </motion.p>
           </div>
@@ -279,18 +279,32 @@ export default function VolunteerPage() {
             >
               Feel free to reach out to us if you have any questions about volunteering.
             </motion.p>
-            <motion.a
-              href="mailto:cbobetterlife@gmail.com"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="text-brand-orange text-xl font-semibold hover:underline"
-            >
-              cbobetterlife@gmail.com
-            </motion.a>
+            <div className="space-y-4">
+              <motion.a
+                href="tel:+254708326278"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="text-gray-700 text-xl font-semibold hover:text-brand-orange block"
+              >
+                +254 708 326278
+              </motion.a>
+              <motion.a
+                href="mailto:cbobetterlife@gmail.com"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="text-brand-orange text-xl font-semibold hover:underline block"
+              >
+                cbobetterlife@gmail.com
+              </motion.a>
+            </div>
           </div>
         </div>
       </section>

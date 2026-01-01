@@ -51,7 +51,9 @@ export async function sendConfirmationEmail(to: string) {
               <p style="font-size: 14px; color: #666; margin-top: 20px;">
                 Best regards,<br>
                 <strong>The Better Life CBO Team</strong><br>
-                <span style="color: #666;">Kahawa West, Roysambu Subcounty, Nairobi</span>
+                <span style="color: #666;">P.O. Box 13768-00100 GPO Nairobi</span><br>
+                <span style="color: #666;">Kahawa West, Roysambu Subcounty</span><br>
+                <span style="color: #666;">Phone: +254 708 326278</span>
               </p>
             </div>
             <div style="text-align: center; margin-top: 20px; padding: 20px; color: #999; font-size: 12px;">

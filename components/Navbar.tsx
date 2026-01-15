@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -17,20 +18,24 @@ export default function Navbar() {
       <div className="container-custom">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
+          <Link href="/" className="flex items-center space-x-4">
             <div className="flex items-center">
-              <div className="text-4xl font-bold">
-                <span className="text-brand-purple">B</span>
-                <span className="text-brand-orange">L</span>
+              <div className="relative w-20 h-20 rounded-xl overflow-hidden shadow-sm flex-shrink-0">
+                <Image
+                  src="/logo.jpeg"
+                  alt="Better Life CBO Logo"
+                  fill
+                  className="object-contain"
+                />
               </div>
             </div>
             <div className="hidden sm:block">
-              <div className="text-lg font-bold">
+              <div className="text-xl font-bold leading-tight">
                 <span className="text-brand-purple">Better</span>{' '}
                 <span className="text-brand-orange">Life</span>{' '}
                 <span className="text-brand-purple">CBO</span>
               </div>
-              <div className="text-xs text-gray-600">Empowering Lives for a Better Tomorrow</div>
+              <div className="text-sm text-gray-600">Empowering Lives for a Better Tomorrow</div>
             </div>
           </Link>
 
@@ -42,41 +47,41 @@ export default function Navbar() {
             className="hidden md:flex items-center space-x-8"
           >
             <motion.div whileHover={{ y: -2 }}>
-              <Link href="/" className="text-gray-700 hover:text-brand-orange transition-colors font-medium">
+              <Link href="/" className="text-gray-700 hover:text-brand-orange transition-colors font-bold text-xs tracking-widest uppercase">
                 Home
               </Link>
             </motion.div>
             {/* About Dropdown */}
             <div className="relative group">
               <motion.div whileHover={{ y: -2 }} className="flex items-center space-x-1 cursor-pointer py-4">
-                <Link href="/about" className="text-gray-700 group-hover:text-brand-orange transition-colors font-medium">
-                  About
+                <Link href="/about" className="text-gray-700 group-hover:text-brand-orange transition-colors font-bold text-xs tracking-widest uppercase">
+                  ABOUT US
                 </Link>
-                <svg className="w-4 h-4 text-gray-500 group-hover:text-brand-orange transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                <svg className="w-3 h-3 text-gray-400 group-hover:text-brand-orange transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                 </svg>
               </motion.div>
 
               {/* Dropdown Menu */}
-              <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 w-56">
-                <div className="bg-white shadow-xl rounded-xl border border-gray-100 overflow-hidden py-2">
-                  <Link href="/about" className="block px-6 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange transition-colors">
-                    Our Story & Objectives
+              <div className="absolute left-0 top-full pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-2 group-hover:translate-y-0 w-64">
+                <div className="bg-white shadow-lg border border-gray-50 overflow-hidden">
+                  <Link href="/about" className="block px-8 py-5 text-[10px] font-black tracking-widest text-gray-800 hover:bg-gray-50 hover:text-brand-orange border-b border-gray-50 transition-all uppercase">
+                    OUR STORY & OBJECTIVES
                   </Link>
-                  <Link href="/about/management" className="block px-6 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-orange transition-colors">
-                    Management & Board
+                  <Link href="/about/management" className="block px-8 py-5 text-[10px] font-black tracking-widest text-gray-800 hover:bg-gray-50 hover:text-brand-orange transition-all uppercase">
+                    MANAGEMENT & BOARD
                   </Link>
                 </div>
               </div>
             </div>
 
             <motion.div whileHover={{ y: -2 }}>
-              <Link href="/programs" className="text-gray-700 hover:text-brand-orange transition-colors font-medium">
+              <Link href="/programs" className="text-gray-700 hover:text-brand-orange transition-colors font-bold text-xs tracking-widest uppercase">
                 Programs
               </Link>
             </motion.div>
             <motion.div whileHover={{ y: -2 }}>
-              <Link href="/volunteer" className="text-gray-700 hover:text-brand-orange transition-colors font-medium">
+              <Link href="/volunteer" className="text-gray-700 hover:text-brand-orange transition-colors font-bold text-xs tracking-widest uppercase">
                 Volunteer
               </Link>
             </motion.div>

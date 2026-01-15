@@ -42,8 +42,8 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl mb-8 text-gray-200"
           >
-            A transformed and self-reliant community living a better life through 
-            community-driven initiatives that enhance social welfare, education, 
+            A transformed and self-reliant community living a better life through
+            community-driven initiatives that enhance social welfare, education,
             environmental sustainability, and economic growth.
           </motion.p>
           <motion.div
@@ -65,7 +65,7 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
-      
+
       {/* Decorative elements */}
       <div className="absolute bottom-0 left-0 right-0">
         <svg className="w-full h-20" fill="white" viewBox="0 0 1200 120" preserveAspectRatio="none">

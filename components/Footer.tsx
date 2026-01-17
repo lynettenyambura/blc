@@ -70,6 +70,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <a href="mailto:info@betterlifecbo.org" className="hover:text-brand-orange transition-colors">
+                  info@betterlifecbo.org
+                </a>
+              </li>
+              <li>
                 <a href="mailto:cbobetterlife@gmail.com" className="hover:text-brand-orange transition-colors">
                   cbobetterlife@gmail.com
                 </a>

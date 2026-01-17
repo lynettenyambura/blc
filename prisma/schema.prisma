@@ -6,14 +6,27 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Newsletter {
   id          String   @id @default(cuid())
   email       String   @unique
   subscribedAt DateTime @default(now())
+
+  @@index([email])
+}
+
+model Volunteer {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  area      String?
+  interests String   // Stored as comma-separated values
+  message   String?
+  createdAt DateTime @default(now())
 
   @@index([email])
 }

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import Swal from 'sweetalert2'
 
 export default function VolunteerPage() {
   const [formData, setFormData] = useState({
@@ -33,18 +34,46 @@ export default function VolunteerPage() {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // In a real application, you would send this data to a backend
-    alert('Thank you for your interest! We will contact you soon.')
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      area: '',
-      interests: [],
-      message: '',
-    })
+
+    try {
+      const response = await fetch('/api/volunteer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit')
+      }
+
+      Swal.fire({
+        title: 'Thank You!',
+        text: 'Your volunteer application has been submitted. We will be in touch soon!',
+        icon: 'success',
+        confirmButtonColor: '#fe330a',
+      })
+
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        area: '',
+        interests: [],
+        message: '',
+      })
+    } catch (error) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Something went wrong. Please try again later.',
+        icon: 'error',
+        confirmButtonColor: '#fe330a',
+      })
+      console.error(error)
+    }
   }
 
   return (
@@ -292,18 +321,32 @@ export default function VolunteerPage() {
               >
                 +254 708 326278
               </motion.a>
-              <motion.a
-                href="mailto:cbobetterlife@gmail.com"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="text-brand-orange text-xl font-semibold hover:underline block"
-              >
-                cbobetterlife@gmail.com
-              </motion.a>
+              <div className="space-y-1">
+                <motion.a
+                  href="mailto:info@betterlifecbo.org"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="text-brand-orange text-xl font-semibold hover:underline block"
+                >
+                  info@betterlifecbo.org
+                </motion.a>
+                <motion.a
+                  href="mailto:cbobetterlife@gmail.com"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.6, delay: 0.45 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="text-gray-500 text-lg font-medium hover:underline block"
+                >
+                  cbobetterlife@gmail.com
+                </motion.a>
+              </div>
             </div>
           </div>
         </div>

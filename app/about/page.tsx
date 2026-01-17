@@ -61,9 +61,14 @@ export default function AboutPage() {
               </p>
               <p className="text-lg text-gray-600">
                 <strong>Email:</strong>{' '}
-                <a href="mailto:cbobetterlife@gmail.com" className="text-brand-orange hover:underline">
-                  cbobetterlife@gmail.com
-                </a>
+                <div className="inline-flex flex-col align-top ml-1">
+                  <a href="mailto:info@betterlifecbo.org" className="text-brand-orange hover:underline">
+                    info@betterlifecbo.org
+                  </a>
+                  <a href="mailto:cbobetterlife@gmail.com" className="text-gray-500 text-sm hover:underline">
+                    cbobetterlife@gmail.com
+                  </a>
+                </div>
               </p>
             </motion.div>
           </div>

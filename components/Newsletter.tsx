@@ -1,17 +1,17 @@
+
 'use client'
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import Swal from 'sweetalert2'
 
 export default function Newsletter() {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [message, setMessage] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('loading')
-    setMessage('')
 
     try {
       const response = await fetch('/api/newsletter', {
@@ -27,21 +27,32 @@ export default function Newsletter() {
       }
 
       setStatus('success')
-      setMessage('Thank you for subscribing! Check your email for a confirmation message.')
       setEmail('')
-      
-      // Reset success message after 5 seconds
+
+      Swal.fire({
+        title: 'Subscribed!',
+        text: 'Thank you for subscribing! Check your email for a confirmation message.',
+        icon: 'success',
+        confirmButtonColor: '#fe330a',
+        timer: 5000
+      })
+
+      // Reset status after 5 seconds
       setTimeout(() => {
         setStatus('idle')
-        setMessage('')
       }, 5000)
     } catch (error) {
       setStatus('error')
-      setMessage(
-        error instanceof Error 
-          ? error.message 
-          : 'Something went wrong. Please try again later.'
-      )
+      const errorMsg = error instanceof Error
+        ? error.message
+        : 'Something went wrong. Please try again later.'
+
+      Swal.fire({
+        title: 'Error',
+        text: errorMsg,
+        icon: 'error',
+        confirmButtonColor: '#fe330a'
+      })
     }
   }
 
@@ -83,20 +94,7 @@ export default function Newsletter() {
             {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
           </motion.button>
         </div>
-
-        {message && (
-          <motion.p
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className={`mt-4 text-sm text-center ${
-              status === 'success' ? 'text-green-300' : 'text-red-300'
-            }`}
-          >
-            {message}
-          </motion.p>
-        )}
       </form>
     </motion.div>
   )
 }
-

@@ -228,9 +228,14 @@ export default function DonatePage() {
             <a href="https://wa.me/254708326278" target="_blank" rel="noopener noreferrer" className="text-xl font-bold hover:text-brand-orange transition-colors">
               +254 708 326 278
             </a>
-            <a href="mailto:cbobetterlife@gmail.com" className="text-xl font-bold hover:text-brand-orange transition-colors">
-              cbobetterlife@gmail.com
-            </a>
+            <div className="flex flex-col gap-2">
+              <a href="mailto:info@betterlifecbo.org" className="text-xl font-bold hover:text-brand-orange transition-colors">
+                info@betterlifecbo.org
+              </a>
+              <a href="mailto:cbobetterlife@gmail.com" className="text-lg font-medium opacity-90 hover:text-brand-orange transition-colors">
+                cbobetterlife@gmail.com
+              </a>
+            </div>
           </div>
         </div>
       </section>

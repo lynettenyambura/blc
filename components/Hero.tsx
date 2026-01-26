@@ -42,9 +42,8 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl mb-8 text-gray-200"
           >
-            A transformed and self-reliant community living a better life through
-            community-driven initiatives that enhance social welfare, education,
-            environmental sustainability, and economic growth.
+            Better Life CBO is a grassroots community-based organization based in Nairobi, Kenya,
+            dedicated to empowering communities, with a focus on youth and women.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

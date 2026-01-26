@@ -2,21 +2,20 @@ import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY || 're_123')
 
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'Better Life CBO <onboarding@resend.dev>'
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'info@betterlifecbo.org'
+
 export async function sendConfirmationEmail(to: string) {
   console.log('📧 Attempting to send confirmation email to:', to)
 
   if (!process.env.RESEND_API_KEY) {
     console.warn('⚠️ RESEND_API_KEY not set, skipping confirmation email')
-    console.warn('Please add RESEND_API_KEY to your .env.local file')
     return
   }
 
-  console.log('✅ RESEND_API_KEY is set')
-  console.log('📤 From email:', process.env.RESEND_FROM_EMAIL || 'Better Life CBO <onboarding@resend.dev>')
-
   try {
     const result = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'Better Life CBO <onboarding@resend.dev>',
+      from: FROM_EMAIL,
       to: to,
       subject: 'Welcome to Better Life CBO Newsletter!',
       html: `
@@ -46,7 +45,7 @@ export async function sendConfirmationEmail(to: string) {
               </div>
               <p style="font-size: 14px; color: #666; margin-top: 30px;">
                 If you have any questions, feel free to reach out to us at 
-                <a href="mailto:cbobetterlife@gmail.com" style="color: #320258;">cbobetterlife@gmail.com</a>
+                <a href="mailto:${ADMIN_EMAIL}" style="color: #320258;">${ADMIN_EMAIL}</a>
               </p>
               <p style="font-size: 14px; color: #666; margin-top: 20px;">
                 Best regards,<br>
@@ -69,74 +68,61 @@ export async function sendConfirmationEmail(to: string) {
 
     if (result.error) {
       console.error('Resend API Error:', result.error)
-      throw new Error(`Failed to send email: ${JSON.stringify(result.error)}`)
     }
-
-    console.log('✅ Confirmation email sent successfully to:', to)
-    console.log('Email ID:', result.data?.id)
   } catch (error: any) {
     console.error('❌ Error sending confirmation email:', error)
-    console.error('Error details:', {
-      message: error?.message,
-      name: error?.name,
-      stack: error?.stack,
-    })
-    // Don't throw - email failure shouldn't break subscription
   }
 }
 
 export async function sendNotificationEmail(subscriberEmail: string) {
-  if (!process.env.RESEND_API_KEY) {
-    console.warn('RESEND_API_KEY not set, skipping notification email')
-    return
-  }
-
-  const adminEmail = process.env.ADMIN_EMAIL || 'cbobetterlife@gmail.com'
+  if (!process.env.RESEND_API_KEY) return
 
   try {
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'Better Life CBO <onboarding@resend.dev>',
-      to: adminEmail,
+      from: FROM_EMAIL,
+      to: ADMIN_EMAIL,
       subject: 'New Newsletter Subscription - Better Life CBO',
       html: `
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          </head>
-          <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <div style="background: linear-gradient(135deg, #320258 0%, #fe330a 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
-              <h1 style="color: white; margin: 0; font-size: 28px;">New Newsletter Subscription</h1>
-            </div>
-            <div style="background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px;">
-              <p style="font-size: 16px; margin-bottom: 20px;">You have a new newsletter subscriber!</p>
-              <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #5c9204;">
-                <p style="margin: 0; font-size: 16px;">
-                  <strong>Subscriber Email:</strong><br>
-                  <a href="mailto:${subscriberEmail}" style="color: #320258; text-decoration: none;">${subscriberEmail}</a>
-                </p>
-                <p style="margin: 15px 0 0 0; font-size: 14px; color: #666;">
-                  <strong>Subscribed At:</strong><br>
-                  ${new Date().toLocaleString('en-US', {
-        dateStyle: 'long',
-        timeStyle: 'short',
-        timeZone: 'Africa/Nairobi'
-      })}
-                </p>
-              </div>
-              <p style="font-size: 14px; color: #666; margin-top: 20px;">
-                You can view all subscribers in your database or through Prisma Studio.
-              </p>
-            </div>
-          </body>
-        </html>
+        <div style="font-family: Arial, sans-serif; padding: 20px;">
+          <h2 style="color: #320258;">New Newsletter Subscription</h2>
+          <p>You have a new newsletter subscriber!</p>
+          <div style="background: #f4f4f4; padding: 15px; border-radius: 8px;">
+            <p><strong>Email:</strong> ${subscriberEmail}</p>
+            <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
+          </div>
+        </div>
       `,
     })
-    console.log('Notification email sent to admin:', adminEmail)
   } catch (error) {
     console.error('Error sending notification email:', error)
-    // Don't throw - email failure shouldn't break subscription
+  }
+}
+
+export async function sendNewVolunteerNotification(volunteer: any) {
+  if (!process.env.RESEND_API_KEY) return
+
+  try {
+    await resend.emails.send({
+      from: FROM_EMAIL,
+      to: ADMIN_EMAIL,
+      subject: `New Volunteer Application: ${volunteer.name}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; padding: 20px;">
+          <h2 style="color: #320258;">New Volunteer Application</h2>
+          <div style="background: #f4f4f4; padding: 15px; border-radius: 8px;">
+            <p><strong>Name:</strong> ${volunteer.name}</p>
+            <p><strong>Email:</strong> ${volunteer.email}</p>
+            <p><strong>Phone:</strong> ${volunteer.phone}</p>
+            <p><strong>Area:</strong> ${volunteer.area || 'Not provided'}</p>
+            <p><strong>Interests:</strong> ${volunteer.interests || 'None selected'}</p>
+            <p><strong>Message:</strong><br>${volunteer.message || 'No message'}</p>
+          </div>
+        </div>
+      `,
+    })
+    console.log('Volunteer notification sent to admin')
+  } catch (error) {
+    console.error('Error sending volunteer notification:', error)
   }
 }
 

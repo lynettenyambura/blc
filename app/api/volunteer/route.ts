@@ -1,7 +1,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { sendNotificationEmail } from '@/lib/email'
+import { sendNotificationEmail, sendNewVolunteerNotification } from '@/lib/email'
 
 export async function POST(request: NextRequest) {
     try {
@@ -32,8 +32,8 @@ export async function POST(request: NextRequest) {
             },
         })
 
-        // Optional: Send notification email to admin about new volunteer
-        // await sendNewVolunteerNotification(email, name) 
+        // Send notification email to admin about new volunteer
+        await sendNewVolunteerNotification(volunteer)
 
         return NextResponse.json(
             { message: 'Volunteer application submitted successfully', id: volunteer.id },

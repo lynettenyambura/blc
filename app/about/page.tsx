@@ -28,8 +28,11 @@ export default function AboutPage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl text-gray-200"
             >
-              A non-political, non-sectarian, and voluntary community organization committed to
-              enhancing the social and economic wellbeing of its members and the wider community.
+              Better Life CBO is a grassroots community-based organization based in Nairobi, Kenya,
+              dedicated to empowering communities, with a focus on youth and women. The organization
+              works in community mobilization, skills training, environmental conservation, health
+              outreach, data collection, and grassroots monitoring and evaluation to promote healthy,
+              sustainable, and self-reliant communities.
             </motion.p>
           </div>
         </div>

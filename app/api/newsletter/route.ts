@@ -94,16 +94,16 @@ export async function POST(request: NextRequest) {
     try {
       // Send confirmation email to subscriber
       await sendConfirmationEmail(normalizedEmail)
-      
-      // Send notification email to admin (commented out)
-      // await sendNotificationEmail(normalizedEmail)
+
+      // Send notification email to admin
+      await sendNotificationEmail(normalizedEmail)
     } catch (emailError) {
       // Log but don't fail - subscription is already saved
       console.error('Email sending failed (subscription still saved):', emailError)
     }
 
     return NextResponse.json(
-      { 
+      {
         message: 'Successfully subscribed to newsletter! Check your email for confirmation.',
         email: normalizedEmail
       },

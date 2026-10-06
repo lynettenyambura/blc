@@ -10,7 +10,7 @@ Your newsletter subscription now sends **both** confirmation and notification em
    - Branded with Better Life CBO colors
 
 2. **Notification Email to Admin** ✅
-   - Sent to `cbobetterlife@gmail.com` (or your custom admin email)
+   - Sent to (or your custom admin email)
    - Notifies you when someone subscribes
    - Includes subscriber email and timestamp
 
@@ -41,11 +41,11 @@ RESEND_API_KEY=re_your_api_key_here
 # Optional: Custom "from" email address
 # Default: onboarding@resend.dev (for testing)
 # For production, verify your domain in Resend and use:
-RESEND_FROM_EMAIL=newsletter@betterlifecbo.org
+RESEND_FROM_EMAIL=
 
 # Optional: Custom admin email for notifications
 # Default: cbobetterlife@gmail.com
-ADMIN_EMAIL=cbobetterlife@gmail.com
+ADMIN_EMAIL=
 ```
 
 ### Step 4: Verify Your Domain (For Production)
@@ -127,14 +127,6 @@ When deploying to Vercel/Netlify:
 
 3. Update `RESEND_FROM_EMAIL` to use your verified domain
 
-## Free Tier Limits
-
-Resend Free Tier:
-- ✅ 3,000 emails/month
-- ✅ 100 emails/day
-- ✅ Perfect for small to medium newsletters
-
-If you need more, upgrade to paid plans starting at $20/month.
 
 ## Next Steps
 
